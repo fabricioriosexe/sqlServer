@@ -1,24 +1,25 @@
-CREATE DATABASE INVERSION
---CREA LA BASE DE DATOS
-go
---EJECUTA EL COMANDO ANTERIOR
-create table cargoooooo(
---crea una tabla cargo
-idcargo int IDENTITY(1,1) PRIMARY KEY,
-nombre_cargo varchar(50) not null
-)
+CREATE DATABASE Inversion;  -- Nombre de la base de datos
 
-create table generooooo(
-id_genero int Identity(1,1) primary key,
-genero char(2) not null
-)
-create table persona(
-idpersona int identity(1,1) primary key,
-nombre varchar(25) not null ,
-apellido varchar(25) not null,
-id_cargo int, --clave foranea
-id_genero int,
-/*relaciones entre tablas*/
-constraint fk_cargo foreign key(id_cargo) references cargoooooo(idcargo),
+GO
 
-)
+USE Inversiones;  -- Usar la nueva base de datos
+
+CREATE TABLE Cargos (  -- Tabla de puestos de trabajo
+    idCargo INT IDENTITY(1, 1) PRIMARY KEY,  -- Clave única que aumenta sola
+    nombre_cargo VARCHAR(50) NOT NULL  -- Nombre del cargo (obligatorio)
+);
+
+CREATE TABLE Generos (  -- Tabla de géneros
+    id_genero INT IDENTITY(1, 1) PRIMARY KEY,  -- Clave única que aumenta sola
+    genero CHAR(2) NOT NULL  -- Género (obligatorio, 2 letras)
+);
+
+CREATE TABLE Personas (
+    idPersona INT IDENTITY(1, 1) PRIMARY KEY,  -- Clave única que aumenta sola
+    nombre VARCHAR(25) NOT NULL,  -- Nombre (obligatorio)
+    apellido VARCHAR(25) NOT NULL,  -- Apellido (obligatorio)
+    id_cargo INT,
+    id_genero INT,
+    FOREIGN KEY (id_cargo) REFERENCES Cargos(idCargo),  -- Referencia al cargo
+    FOREIGN KEY (id_genero) REFERENCES Generos(id_genero)  -- Referencia al género
+);
