@@ -1,0 +1,24 @@
+CREATE DATABASE INVERSION
+--CREA LA BASE DE DATOS
+go
+--EJECUTA EL COMANDO ANTERIOR
+create table cargoooooo(
+--crea una tabla cargo
+idcargo int IDENTITY(1,1) PRIMARY KEY,
+nombre_cargo varchar(50) not null
+)
+
+create table generooooo(
+id_genero int Identity(1,1) primary key,
+genero char(2) not null
+)
+create table persona(
+idpersona int identity(1,1) primary key,
+nombre varchar(25) not null ,
+apellido varchar(25) not null,
+id_cargo int, --clave foranea
+id_genero int,
+/*relaciones entre tablas*/
+constraint fk_cargo foreign key(id_cargo) references cargoooooo(idcargo),
+
+)
